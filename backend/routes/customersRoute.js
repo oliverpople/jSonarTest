@@ -6,7 +6,13 @@ var connection = mysql.createConnection({
   database: "classicmodels"
 });
 
-connection.connect();
+connection.connect(function(err) {
+  if (!err) {
+    console.log("Customer database is connected ... nn");
+  } else {
+    console.log("Error connecting to customer database ... nn", err);
+  }
+});
 
 connection.query("SELECT * FROM customers", function(err, rows, fields) {
   if (err) throw err;

@@ -4,7 +4,7 @@ var jsonfile = require("jsonfile");
 var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: process.env.db_password,
+  password: process.env.DB_PASSWORD,
   database: "jsonar_db",
   insecureAuth: false
 });

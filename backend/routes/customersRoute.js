@@ -14,10 +14,23 @@ connection.connect(function(err) {
   }
 });
 
-connection.query("SELECT * FROM customers", function(err, rows, fields) {
-  if (err) throw err;
+exports.customers = function(req, res) {
+  connection.query("SELECT * FROM customers", function(err, rows, fields) {
+    if (error) {
+      console.log("error ocurred fetching customer data", error);
+      res.send({
+        code: 400,
+        failed: "error ocurred"
+      });
+    } else {
+      res.send({
+        code: 200,
+        success: "customer data received"
+      });
+    }
 
-  console.log("The solution is: ", rows);
-});
+    console.log("The solution is: ", rows);
+  });
 
-connection.end();
+  connection.end();
+};

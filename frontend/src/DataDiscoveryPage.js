@@ -8,9 +8,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      customers: []
+      customerData: [],
+      customerNames: []
     };
     this.getCustomerData = this.getCustomerData.bind(this);
+    this.listCustomerNames = this.listCustomerNames.bind(this);
+    this.getCustomerNames = this.getCustomerNames.bind(this);
   }
 
   componentDidMount() {
@@ -18,22 +21,32 @@ class App extends Component {
   }
 
   async getCustomerData() {
-    const res = await axios
-      .get(apiBaseUrl + "customers")
-      .then(function(res) {
-        if (res.data.code === 200) {
-          console.log("Customer data successfully recieved");
-        } else {
-          console.log("Customer data is unavailable");
-          alert("Customer data is unavailable");
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    const res = await axios.get(apiBaseUrl + "customers");
     const customerData = await res.data.customerData;
-    this.setState({ customers: customerData });
-    console.log(this.state.customers);
+    this.setState({ customerData: customerData });
+    this.getCustomerNames(customerData);
+    if (res.data.code === 200) {
+      console.log("Customer data successfully recieved");
+    } else {
+      console.log("Customer data is unavailable");
+      alert("Customer data is unavailable");
+    }
+  }
+
+  getCustomerNames(customerData) {
+    var customerNameArray = [];
+    for (var j = 0; j < customerData.length; j++) {
+      customerNameArray.push(customerData[j].customerName);
+      this.setState({ customerNames: customerNameArray });
+    }
+  }
+
+  listCustomerNames() {
+    const customerNames = this.state.customerNames;
+    const listNames = customerNames.map((name, index) => (
+      <li key={index}>{name}</li>
+    ));
+    return <ul>{listNames}</ul>;
   }
 
   render() {
@@ -42,6 +55,7 @@ class App extends Component {
         <MuiThemeProvider>
           <AppBar title="Data Discovery Page" />
         </MuiThemeProvider>
+        <div>{this.listCustomerNames()}</div>
       </div>
     );
   }

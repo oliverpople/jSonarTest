@@ -7,14 +7,15 @@ var connection = mysql.createConnection({
   database: "classicmodels"
 });
 
+connection.connect(function(err) {
+  if (!err) {
+    console.log("Customer database is connected ... nn");
+  } else {
+    console.log("Error connecting to customer database ... nn", err);
+  }
+});
+
 exports.customers = function(req, res) {
-  connection.connect(function(err) {
-    if (!err) {
-      console.log("Customer database is connected ... nn");
-    } else {
-      console.log("Error connecting to customer database ... nn", err);
-    }
-  });
   connection.query("SELECT * FROM customers", function(err, rows, fields) {
     if (err) {
       console.log("error ocurred fetching customer data", err);
@@ -26,7 +27,7 @@ exports.customers = function(req, res) {
       res.send({
         code: 200,
         success: "customer data received",
-        data: rows
+        customerData: rows
       });
     }
   });

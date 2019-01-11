@@ -62,12 +62,11 @@ class App extends Component {
     var payload = {
       nameForFilter: this.state.nameForFilter
     };
-
-    const res = await axios.get(apiBaseUrl + "customerfilter", payload);
+    const res = await axios.post(apiBaseUrl + "customerfilter", payload);
     const customerFilteredNameData = await res.data.customerData;
     this.setState({ customerFilteredNameData: customerFilteredNameData });
     // this.cleanCustomerNameData(customerFilteredNameData);
-    console.log(res);
+    console.log(res.data.customerData[0].customername);
     if (res.data.code === 200) {
       console.log("Filter successfull");
     } else {

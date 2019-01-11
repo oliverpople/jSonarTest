@@ -1,5 +1,6 @@
 var express = require("express");
 var login = require("./routes/loginroutes");
+var customersRoutes = require("./routes/customersRoutes");
 var bodyParser = require("body-parser");
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,8 +21,8 @@ router.get("/", function(req, res) {
   res.json({ message: "welcome to our apis" });
 });
 
-//route to handle user registration
 router.post("/register", login.register);
 router.post("/login", login.login);
+router.get("/customers", customersRoutes.customers);
 app.use("/api", router);
 app.listen(4000);

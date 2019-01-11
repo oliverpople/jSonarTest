@@ -14,10 +14,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      customerNameData: [],
       customerNames: [],
       nameForFilter: [],
-      customerFilteredNameData: []
+      filteredNameData: []
     };
     this.getCustomerNameData = this.getCustomerNameData.bind(this);
     this.listCustomerNames = this.listCustomerNames.bind(this);
@@ -30,9 +29,9 @@ class App extends Component {
 
   async getCustomerNameData() {
     const res = await axios.get(apiBaseUrl + "customernames");
-    const customerNameData = await res.data.customerData;
-    this.setState({ customerNameData: customerNameData });
-    this.cleanCustomerNameData(customerNameData);
+    const rawCustomerNameData = await res.data.customerData;
+    var cleanNameData = this.cleanCustomerNameData(rawCustomerNameData);
+    this.setState({ customerNames: cleanNameData });
     if (res.data.code === 200) {
       console.log("Customer names successfully recieved");
     } else {
@@ -42,11 +41,11 @@ class App extends Component {
   }
 
   cleanCustomerNameData(customerNameData) {
-    var customerNameArray = [];
+    var cleanCustomerNameArray = [];
     for (var j = 0; j < customerNameData.length; j++) {
-      customerNameArray.push(customerNameData[j].customername);
-      this.setState({ customerNames: customerNameArray });
+      cleanCustomerNameArray.push(customerNameData[j].customername);
     }
+    return cleanCustomerNameArray;
   }
 
   listCustomerNames() {
@@ -63,9 +62,9 @@ class App extends Component {
       nameForFilter: this.state.nameForFilter
     };
     const res = await axios.post(apiBaseUrl + "customerfilter", payload);
-    const customerFilteredNameData = await res.data.customerData;
-    this.setState({ customerFilteredNameData: customerFilteredNameData });
-    // this.cleanCustomerNameData(customerFilteredNameData);
+    const rawFilteredNameData = await res.data.customerData;
+    var cleanFilteredNamedata = this.cleanCustomerNameData(rawFilteredNameData);
+    this.setState({ filteredNamedata: cleanFilteredNamedata });
     console.log(res.data.customerData[0].customername);
     if (res.data.code === 200) {
       console.log("Filter successfull");

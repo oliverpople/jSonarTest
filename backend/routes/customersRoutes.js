@@ -38,6 +38,8 @@ exports.customernames = function(req, res) {
 };
 
 exports.customerfilter = function(req, res) {
+  const nameForFilter = req.body.nameForFilter;
+  console.log(nameForFilter); // not coming through?
   const selectedCustomer = "('ANG Resellers')";
   connection.query(
     "SELECT customername FROM customers WHERE customername = " +

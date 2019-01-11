@@ -2,14 +2,22 @@ import React, { Component } from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import AppBar from "material-ui/AppBar";
 import axios from "axios";
+import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
 var apiBaseUrl = "http://localhost:4000/api/";
+
+const style = {
+  margin: 15
+};
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       customerNameData: [],
-      customerNames: []
+      customerNames: [],
+      nameForFilter: [],
+      customerFilteredNameData: []
     };
     this.getCustomerNameData = this.getCustomerNameData.bind(this);
     this.listCustomerNames = this.listCustomerNames.bind(this);
@@ -49,11 +57,46 @@ class App extends Component {
     return <ul>{listNames}</ul>;
   }
 
+  async handleClick(event) {
+    var self = this;
+    var payload = {
+      nameForFilter: this.state.nameForFilter
+    };
+
+    const res = await axios.get(apiBaseUrl + "customerfilter", payload);
+    const customerFilteredNameData = await res.data.customerData;
+    this.setState({ customerFilteredNameData: customerFilteredNameData });
+    // this.cleanCustomerNameData(customerFilteredNameData);
+    console.log(res);
+    if (res.data.code === 200) {
+      console.log("Filter successfull");
+    } else {
+      console.log("Filter unsuccessfull");
+      alert("Filter unsuccessfull");
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <MuiThemeProvider>
           <AppBar title="Data Discovery Page" />
+          <div>
+            <TextField
+              hintText="Search Name"
+              floatingLabelText="Search Name"
+              onChange={(event, newValue) =>
+                this.setState({ nameForFilter: newValue })
+              }
+            />
+            <br />
+            <RaisedButton
+              label="Submit"
+              primary={true}
+              style={style}
+              onClick={event => this.handleClick(event)}
+            />
+          </div>
         </MuiThemeProvider>
         <div>{this.listCustomerNames()}</div>
       </div>

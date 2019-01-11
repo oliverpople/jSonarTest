@@ -36,3 +36,26 @@ exports.customernames = function(req, res) {
     }
   });
 };
+
+exports.customerfilter = function(req, res) {
+  const selectedCustomer = "('ANG Resellers')";
+  connection.query(
+    "SELECT customername FROM customers WHERE customername = " +
+      selectedCustomer,
+    function(err, rows, fields) {
+      if (err) {
+        console.log("error ocurred filtering customer name", err);
+        res.send({
+          code: 400,
+          failed: "error ocurred"
+        });
+      } else {
+        res.send({
+          code: 200,
+          success: "customer names filtered",
+          customerData: rows
+        });
+      }
+    }
+  );
+};

@@ -16,7 +16,7 @@ class App extends Component {
     this.state = {
       customerNames: [],
       nameForFilter: [],
-      filteredNameData: []
+      selectedName: []
     };
     this.getCustomerNameData = this.getCustomerNameData.bind(this);
     this.listCustomerNames = this.listCustomerNames.bind(this);
@@ -64,7 +64,7 @@ class App extends Component {
     const res = await axios.post(apiBaseUrl + "customerfilter", payload);
     const rawFilteredNameData = await res.data.customerData;
     var cleanFilteredNamedata = this.cleanCustomerNameData(rawFilteredNameData);
-    this.setState({ filteredNamedata: cleanFilteredNamedata });
+    this.setState({ customerNames: cleanFilteredNamedata });
     console.log(res.data.customerData[0].customername);
     if (res.data.code === 200) {
       console.log("Filter successfull");

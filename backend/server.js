@@ -25,5 +25,6 @@ router.post("/register", login.register);
 router.post("/login", login.login);
 router.get("/customernames", customersRoutes.customernames);
 router.post("/customerfilter", customersRoutes.customerfilter);
+router.get("/customerorderinfo", customersRoutes.customerorderinfo);
 app.use("/api", router);
 app.listen(4000);

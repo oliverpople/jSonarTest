@@ -60,3 +60,29 @@ exports.customerfilter = function(req, res) {
     }
   );
 };
+
+exports.customerorderinfo = function(req, res) {
+  // var costumerNumber = req.body.costumerNumber;
+  var costumerNumber = 363; //test
+  const costumerNumberReadyForQuery = '"' + costumerNumber + '";';
+  connection.query(
+    "SELECT * FROM orders CROSS JOIN orderdetails CROSS JOIN products WHERE customerNumber = " +
+      costumerNumber +
+      " and orders.orderNumber = orderdetails.orderNumber and orderdetails.productCode = products.productCode ORDER BY orders.orderDate;",
+    function(err, rows, fields) {
+      if (err) {
+        console.log("error ocurred filtering customer name", err);
+        res.send({
+          code: 400,
+          failed: "error ocurred"
+        });
+      } else {
+        res.send({
+          code: 200,
+          success: "customer names filtered",
+          customerData: rows
+        });
+      }
+    }
+  );
+};

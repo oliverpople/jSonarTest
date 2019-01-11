@@ -9,16 +9,20 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
   if (!err) {
-    console.log("Customer database is connected ... nn");
+    console.log("classicmodels database is connected ... nn");
   } else {
-    console.log("Error connecting to customer database ... nn", err);
+    console.log("Error connecting to classicmodels database ... nn", err);
   }
 });
 
-exports.customers = function(req, res) {
-  connection.query("SELECT * FROM customers", function(err, rows, fields) {
+exports.customernames = function(req, res) {
+  connection.query("SELECT customername FROM customers", function(
+    err,
+    rows,
+    fields
+  ) {
     if (err) {
-      console.log("error ocurred fetching customer data", err);
+      console.log("error ocurred fetching customer name", err);
       res.send({
         code: 400,
         failed: "error ocurred"
@@ -26,7 +30,7 @@ exports.customers = function(req, res) {
     } else {
       res.send({
         code: 200,
-        success: "customer data received",
+        success: "customer names received",
         customerData: rows
       });
     }

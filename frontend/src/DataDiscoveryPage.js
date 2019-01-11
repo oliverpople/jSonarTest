@@ -8,35 +8,35 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      customerData: [],
+      customerNameData: [],
       customerNames: []
     };
-    this.getCustomerData = this.getCustomerData.bind(this);
+    this.getCustomerNameData = this.getCustomerNameData.bind(this);
     this.listCustomerNames = this.listCustomerNames.bind(this);
-    this.getCustomerNames = this.getCustomerNames.bind(this);
+    this.cleanCustomerNameData = this.cleanCustomerNameData.bind(this);
   }
 
   componentDidMount() {
-    this.getCustomerData();
+    this.getCustomerNameData();
   }
 
-  async getCustomerData() {
-    const res = await axios.get(apiBaseUrl + "customers");
-    const customerData = await res.data.customerData;
-    this.setState({ customerData: customerData });
-    this.getCustomerNames(customerData);
+  async getCustomerNameData() {
+    const res = await axios.get(apiBaseUrl + "customernames");
+    const customerNameData = await res.data.customerData;
+    this.setState({ customerNameData: customerNameData });
+    this.cleanCustomerNameData(customerNameData);
     if (res.data.code === 200) {
-      console.log("Customer data successfully recieved");
+      console.log("Customer names successfully recieved");
     } else {
-      console.log("Customer data is unavailable");
+      console.log("Customer names is unavailable");
       alert("Customer data is unavailable");
     }
   }
 
-  getCustomerNames(customerData) {
+  cleanCustomerNameData(customerNameData) {
     var customerNameArray = [];
-    for (var j = 0; j < customerData.length; j++) {
-      customerNameArray.push(customerData[j].customerName);
+    for (var j = 0; j < customerNameData.length; j++) {
+      customerNameArray.push(customerNameData[j].customername);
       this.setState({ customerNames: customerNameArray });
     }
   }

@@ -23,6 +23,6 @@ router.get("/", function(req, res) {
 
 router.post("/register", login.register);
 router.post("/login", login.login);
-router.get("/customers", customersRoutes.customers);
+router.get("/customernames", customersRoutes.customernames);
 app.use("/api", router);
 app.listen(4000);

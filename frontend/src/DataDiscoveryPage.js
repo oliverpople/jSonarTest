@@ -25,6 +25,10 @@ class App extends Component {
     this.cleanCustomerNumberData = this.cleanCustomerNumberData.bind(this);
     this.handleCustomerClick = this.handleCustomerClick.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
+    this.listSelectedCustomerOrders = this.listSelectedCustomerOrders.bind(
+      this
+    );
+    this.cleanRawCustomerInfoData = this.cleanRawCustomerInfoData.bind(this);
   }
 
   componentDidMount() {
@@ -50,8 +54,8 @@ class App extends Component {
 
   cleanCustomerNameData(rawCustomerIdentityData) {
     var cleanCustomerNameArray = [];
-    for (var j = 0; j < rawCustomerIdentityData.length; j++) {
-      cleanCustomerNameArray.push(rawCustomerIdentityData[j].customername);
+    for (var i = 0; i < rawCustomerIdentityData.length; i++) {
+      cleanCustomerNameArray.push(rawCustomerIdentityData[i].customername);
     }
     return cleanCustomerNameArray;
   }
@@ -59,8 +63,8 @@ class App extends Component {
   //DRY up remove duplication
   cleanCustomerNumberData(rawCustomerIdentityData) {
     var cleanCustomerNumberArray = [];
-    for (var j = 0; j < rawCustomerIdentityData.length; j++) {
-      cleanCustomerNumberArray.push(rawCustomerIdentityData[j].customernumber);
+    for (var i = 0; i < rawCustomerIdentityData.length; i++) {
+      cleanCustomerNumberArray.push(rawCustomerIdentityData[i].customernumber);
     }
     return cleanCustomerNumberArray;
   }
@@ -73,22 +77,6 @@ class App extends Component {
       </li>
     ));
     return <ul>{listNames}</ul>;
-  }
-
-  async handleCustomerClick(event) {
-    var customerNumberForInfoReq = this.state.customerNumbers[event.index];
-    var payload = {
-      customerNumberForInfoReq: customerNumberForInfoReq
-    };
-    const res = await axios.post(apiBaseUrl + "customerorderinfo", payload);
-    const rawCustomerInfoData = await res.data.customerInfoData;
-    this.setState({ rawCustomerInfoData: rawCustomerInfoData });
-    if (res.data.code === 200) {
-      console.log("Customer info successfully received");
-    } else {
-      console.log("Customer info not received");
-      alert("Customer info request unsuccessfull");
-    }
   }
 
   async handleFilter(event) {
@@ -106,6 +94,48 @@ class App extends Component {
       console.log("Filter unsuccessfull");
       alert("Filter unsuccessfull");
     }
+  }
+
+  async handleCustomerClick(event) {
+    var customerNumberForInfoReq = this.state.customerNumbers[event.index];
+    var payload = {
+      customerNumberForInfoReq: customerNumberForInfoReq
+    };
+    const res = await axios.post(apiBaseUrl + "customerorderinfo", payload);
+    const rawCustomerInfoData = await res.data.customerInfoData;
+    if (res.data.code === 200) {
+      console.log("Customer info successfully received");
+    } else {
+      console.log("Customer info not received");
+      alert("Customer info request unsuccessfull");
+    }
+    this.setState({ rawCustomerInfoData: rawCustomerInfoData });
+    var cleanRawCustomerInfoData = this.cleanRawCustomerInfoData(
+      rawCustomerInfoData
+    );
+    console.log(cleanRawCustomerInfoData);
+  }
+
+  listSelectedCustomerOrders() {}
+
+  cleanRawCustomerInfoData(rawCustomerInfoData) {
+    var allSelectedCustomerOrdersArray = [];
+    var orderSubArray = [];
+    var previousOrderNumber = rawCustomerInfoData[0].orderNumber;
+    for (var i = 0; i < rawCustomerInfoData.length; i++) {
+      if (rawCustomerInfoData[i].orderNumber === previousOrderNumber) {
+        orderSubArray.push(rawCustomerInfoData[i]);
+      } else if (rawCustomerInfoData[i].orderNumber !== previousOrderNumber) {
+        allSelectedCustomerOrdersArray.push(orderSubArray);
+        var orderSubArray = [];
+        var previousOrderNumber = rawCustomerInfoData[i].orderNumber;
+        orderSubArray.push(rawCustomerInfoData[i]);
+        if (i === rawCustomerInfoData.length - 1) {
+          allSelectedCustomerOrdersArray.push(orderSubArray);
+        }
+      }
+    }
+    return allSelectedCustomerOrdersArray;
   }
 
   render() {

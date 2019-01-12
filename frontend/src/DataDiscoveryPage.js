@@ -105,17 +105,43 @@ class App extends Component {
     };
     const res = await axios.post(apiBaseUrl + "customerorderinfo", payload);
     const rawCustomerInfoData = await res.data.customerInfoData;
+    ///asynchronous issues
+    this.setState({ rawCustomerInfoData: rawCustomerInfoData });
+    var cleanRawCustomerInfoData = this.cleanRawCustomerInfoData(
+      rawCustomerInfoData
+    );
+    console.log(rawCustomerInfoData);
+    console.log(cleanRawCustomerInfoData);
+    this.setState({ selectedCustomerOrdersArray: cleanRawCustomerInfoData });
     if (res.data.code === 200) {
       console.log("Customer info successfully received");
     } else {
       console.log("Customer info not received");
       alert("Customer info request unsuccessfull");
     }
-    this.setState({ rawCustomerInfoData: rawCustomerInfoData });
-    var cleanRawCustomerInfoData = this.cleanRawCustomerInfoData(
-      rawCustomerInfoData
-    );
-    this.setState({ selectedCustomerOrdersArray: cleanRawCustomerInfoData });
+  }
+
+  cleanRawCustomerInfoData(rawCustomerInfoData) {
+    var allSelectedCustomerOrdersArray = [];
+    var orderSubArray = [];
+    var previousOrderNumber = rawCustomerInfoData[0].orderNumber;
+    for (var i = 0; i < rawCustomerInfoData.length; i++) {
+      if (rawCustomerInfoData[i].orderNumber === previousOrderNumber) {
+        orderSubArray.push(rawCustomerInfoData[i]);
+        if (i === rawCustomerInfoData.length - 1) {
+          allSelectedCustomerOrdersArray.push(orderSubArray);
+        }
+      } else if (rawCustomerInfoData[i].orderNumber !== previousOrderNumber) {
+        allSelectedCustomerOrdersArray.push(orderSubArray);
+        var orderSubArray = [];
+        var previousOrderNumber = rawCustomerInfoData[i].orderNumber;
+        orderSubArray.push(rawCustomerInfoData[i]);
+        if (i === rawCustomerInfoData.length - 1) {
+          allSelectedCustomerOrdersArray.push(orderSubArray);
+        }
+      }
+    }
+    return allSelectedCustomerOrdersArray;
   }
 
   listSelectedCustomerOrders() {
@@ -130,26 +156,6 @@ class App extends Component {
       );
       return <ul>{listOrders}</ul>;
     }
-  }
-
-  cleanRawCustomerInfoData(rawCustomerInfoData) {
-    var allSelectedCustomerOrdersArray = [];
-    var orderSubArray = [];
-    var previousOrderNumber = rawCustomerInfoData[0].orderNumber;
-    for (var i = 0; i < rawCustomerInfoData.length; i++) {
-      if (rawCustomerInfoData[i].orderNumber === previousOrderNumber) {
-        orderSubArray.push(rawCustomerInfoData[i]);
-      } else if (rawCustomerInfoData[i].orderNumber !== previousOrderNumber) {
-        allSelectedCustomerOrdersArray.push(orderSubArray);
-        var orderSubArray = [];
-        var previousOrderNumber = rawCustomerInfoData[i].orderNumber;
-        orderSubArray.push(rawCustomerInfoData[i]);
-        if (i === rawCustomerInfoData.length - 1) {
-          allSelectedCustomerOrdersArray.push(orderSubArray);
-        }
-      }
-    }
-    return allSelectedCustomerOrdersArray;
   }
 
   render() {

@@ -48,10 +48,10 @@ class Order extends Component {
             Comments:{" "}
             {this.state.comments === null ? "n/a" : this.state.comments}
           </li>
-          <li>CustomerNumber: {this.state.customerNumber}</li>
+          <li>Customer Number: {this.state.customerNumber}</li>
           <br />
         </ul>
-        <div>{this.listSelectedOrderProdcutDetails()}</div>
+        <div>{this.listSelectedOrderProdcutDetails()}</div>;
       </div>
     );
   }

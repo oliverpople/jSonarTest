@@ -14,16 +14,16 @@ class Order extends Component {
       customerNumber: this.props.orderDetails[0].customerNumber,
       allOrderDetails: this.props.orderDetails
     };
-    this.listSelectedOrderProdcutDetails = this.listSelectedOrderProdcutDetails.bind(
+    this.listSelectedOrderProductDetails = this.listSelectedOrderProductDetails.bind(
       this
     );
   }
 
-  listSelectedOrderProdcutDetails() {
+  listSelectedOrderProductDetails() {
     var allOrderDetails = this.state.allOrderDetails;
     for (var i = 0; i < allOrderDetails.length; i++) {
       var listProductDetails = allOrderDetails.map((productDetails, index) => (
-        <li>
+        <li key={index}>
           <Products key={index} productDetails={productDetails} />
         </li>
       ));
@@ -32,7 +32,7 @@ class Order extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
   }
 
   render() {
@@ -51,7 +51,7 @@ class Order extends Component {
           <li>Customer Number: {this.state.customerNumber}</li>
           <br />
         </ul>
-        <div>{this.listSelectedOrderProdcutDetails()}</div>;
+        <div>{this.listSelectedOrderProductDetails()}</div>;
       </div>
     );
   }

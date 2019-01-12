@@ -104,6 +104,7 @@ class App extends Component {
       customerNumberForInfoReq: customerNumberForInfoReq
     };
     const res = await axios.post(apiBaseUrl + "customerorderinfo", payload);
+
     const rawCustomerInfoData = await res.data.customerInfoData;
     ///asynchronous issues
     this.setState({ rawCustomerInfoData: rawCustomerInfoData });
@@ -112,7 +113,9 @@ class App extends Component {
     );
     console.log(rawCustomerInfoData);
     console.log(cleanRawCustomerInfoData);
-    this.setState({ selectedCustomerOrdersArray: cleanRawCustomerInfoData });
+    this.setState({
+      selectedCustomerOrdersArray: cleanRawCustomerInfoData
+    });
     if (res.data.code === 200) {
       console.log("Customer info successfully received");
     } else {
@@ -149,8 +152,8 @@ class App extends Component {
     for (var i = 0; i < selectedCustomerOrdersArray.length; i++) {
       var listOrders = selectedCustomerOrdersArray.map(
         (orderDetails, index) => (
-          <li>
-            <Order key={index} orderDetails={orderDetails} />
+          <li key={orderDetails[0].orderNumber}>
+            <Order orderDetails={orderDetails} />
           </li>
         )
       );

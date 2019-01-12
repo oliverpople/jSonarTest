@@ -99,29 +99,31 @@ class App extends Component {
   }
 
   async handleCustomerClick(event) {
+    var self = this;
     var customerNumberForInfoReq = this.state.customerNumbers[event.index];
     var payload = {
       customerNumberForInfoReq: customerNumberForInfoReq
     };
-    const res = await axios.post(apiBaseUrl + "customerorderinfo", payload);
 
-    const rawCustomerInfoData = await res.data.customerInfoData;
-    ///asynchronous issues
-    this.setState({ rawCustomerInfoData: rawCustomerInfoData });
-    var cleanRawCustomerInfoData = this.cleanRawCustomerInfoData(
-      rawCustomerInfoData
-    );
-    console.log(rawCustomerInfoData);
-    console.log(cleanRawCustomerInfoData);
-    this.setState({
-      selectedCustomerOrdersArray: cleanRawCustomerInfoData
-    });
-    if (res.data.code === 200) {
-      console.log("Customer info successfully received");
-    } else {
-      console.log("Customer info not received");
-      alert("Customer info request unsuccessfull");
-    }
+    axios
+      .post(apiBaseUrl + "customerorderinfo", payload)
+      .then(res => {
+        this.setState({ rawCustomerInfoData: res.data.customerInfoData });
+        if (this.state.rawCustomerInfoData.length >= 1) {
+          var cleanRawCustomerInfoData = self.cleanRawCustomerInfoData(
+            this.state.rawCustomerInfoData
+          );
+          this.setState({
+            selectedCustomerOrdersArray: cleanRawCustomerInfoData
+          });
+        } else {
+          console.log("Customer has no Orders");
+          alert("Customer has no Orders");
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   cleanRawCustomerInfoData(rawCustomerInfoData) {

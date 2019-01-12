@@ -5,7 +5,7 @@ import axios from "axios";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import Order from "./Order.js";
-import Card from "@material-ui/core/Card";
+import { Card, List, ListItemText, ListItem } from "@material-ui/core";
 var apiBaseUrl = "http://localhost:4000/api/";
 
 const style = {
@@ -75,11 +75,14 @@ class App extends Component {
   listCustomerNames() {
     const customerNames = this.state.customerNames;
     const listNames = customerNames.map((name, index) => (
-      <li key={index} onClick={event => this.handleCustomerClick({ index })}>
-        {name}
-      </li>
+      <ListItem button key={index}>
+        <ListItemText
+          primary={name}
+          onClick={event => this.handleCustomerClick({ index })}
+        />
+      </ListItem>
     ));
-    return <ul>{listNames}</ul>;
+    return <List>{listNames}</List>;
   }
 
   async handleFilter(event) {

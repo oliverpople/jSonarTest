@@ -15,24 +15,31 @@ class App extends Component {
     super(props);
     this.state = {
       customerNames: [],
-      nameForFilter: []
+      nameForFilter: [],
       // selectedName: ""
+      customerNumbers: []
     };
-    this.getCustomerNameData = this.getCustomerNameData.bind(this);
+    this.getCustomerIdentityData = this.getCustomerIdentityData.bind(this);
     this.listCustomerNames = this.listCustomerNames.bind(this);
     this.cleanCustomerNameData = this.cleanCustomerNameData.bind(this);
-    this.handleSelection = this.handleSelection.bind(this);
+    this.cleanCustomerNumberData = this.cleanCustomerNumberData.bind(this);
+    this.handleCustomerClick = this.handleCustomerClick.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
   componentDidMount() {
-    this.getCustomerNameData();
+    this.getCustomerIdentityData();
   }
 
-  async getCustomerNameData() {
+  async getCustomerIdentityData() {
     const res = await axios.get(apiBaseUrl + "customernames");
-    const rawCustomerNameData = await res.data.customerData;
-    var cleanNameData = this.cleanCustomerNameData(rawCustomerNameData);
+    const rawCustomerIdentityData = await res.data.customerData;
+    var cleanNameData = this.cleanCustomerNameData(rawCustomerIdentityData);
+    var cleanCustomerNumberData = this.cleanCustomerNumberData(
+      rawCustomerIdentityData
+    );
     this.setState({ customerNames: cleanNameData });
+    this.setState({ customerNumbers: cleanCustomerNumberData });
     if (res.data.code === 200) {
       console.log("Customer names successfully recieved");
     } else {
@@ -41,33 +48,42 @@ class App extends Component {
     }
   }
 
-  cleanCustomerNameData(customerNameData) {
+  cleanCustomerNameData(rawCustomerIdentityData) {
     var cleanCustomerNameArray = [];
-    for (var j = 0; j < customerNameData.length; j++) {
-      cleanCustomerNameArray.push(customerNameData[j].customername);
+    for (var j = 0; j < rawCustomerIdentityData.length; j++) {
+      cleanCustomerNameArray.push(rawCustomerIdentityData[j].customername);
     }
     return cleanCustomerNameArray;
+  }
+
+  //DRY up remove duplication
+  cleanCustomerNumberData(rawCustomerIdentityData) {
+    var cleanCustomerNumberArray = [];
+    for (var j = 0; j < rawCustomerIdentityData.length; j++) {
+      cleanCustomerNumberArray.push(rawCustomerIdentityData[j].customernumber);
+    }
+    return cleanCustomerNumberArray;
   }
 
   listCustomerNames() {
     const customerNames = this.state.customerNames;
     const listNames = customerNames.map((name, index) => (
-      <li key={index} onClick={event => this.handleSelection({ name })}>
+      <li key={index} onClick={event => this.handleCustomerClick({ index })}>
         {name}
       </li>
     ));
     return <ul>{listNames}</ul>;
   }
 
-  async handleSelection(name) {
+  async handleCustomerClick(event) {
+    var customerNumberForInfoReq = this.state.customerNumbers[event.index];
     var payload = {
-      nameForCustomerInfoReq: name.name
+      customerNumberForInfoReq: customerNumberForInfoReq
     };
     const res = await axios.post(apiBaseUrl + "customerorderinfo", payload);
     const rawCustomerData = await res.data.customerData;
     // var cleanFilteredNamedata = this.cleanCustomerNameData(rawFilteredNameData);
     // this.setState({ customerNames: cleanFilteredNamedata });
-    console.log(res.data.rawCustomerData);
     if (res.data.code === 200) {
       console.log("Customer info successfully received");
     } else {
@@ -76,7 +92,7 @@ class App extends Component {
     }
   }
 
-  async handleClick(event) {
+  async handleFilter(event) {
     var payload = {
       nameForFilter: this.state.nameForFilter
     };
@@ -111,7 +127,7 @@ class App extends Component {
               label="Submit"
               primary={true}
               style={style}
-              onClick={event => this.handleClick(event)}
+              onClick={event => this.handleFilter(event)}
             />
           </div>
         </MuiThemeProvider>

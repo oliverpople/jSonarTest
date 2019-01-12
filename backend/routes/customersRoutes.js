@@ -16,25 +16,24 @@ connection.connect(function(err) {
 });
 
 exports.customernames = function(req, res) {
-  connection.query("SELECT customername FROM customers", function(
-    err,
-    rows,
-    fields
-  ) {
-    if (err) {
-      console.log("error ocurred fetching customer name", err);
-      res.send({
-        code: 400,
-        failed: "error ocurred"
-      });
-    } else {
-      res.send({
-        code: 200,
-        success: "customer names received",
-        customerData: rows
-      });
+  connection.query(
+    "SELECT customername, customernumber FROM customers",
+    function(err, rows, fields) {
+      if (err) {
+        console.log("error ocurred fetching customer name", err);
+        res.send({
+          code: 400,
+          failed: "error ocurred"
+        });
+      } else {
+        res.send({
+          code: 200,
+          success: "customer names received",
+          customerData: rows
+        });
+      }
     }
-  });
+  );
 };
 
 exports.customerfilter = function(req, res) {
@@ -62,12 +61,10 @@ exports.customerfilter = function(req, res) {
 };
 
 exports.customerorderinfo = function(req, res) {
-  var costumerNumber = req.body.nameForCustomerInfoReq;
-  // var costumerNumber = 363; //test
-  const costumerNumberReadyForQuery = '"' + costumerNumber + '";';
+  var costumerNumber = req.body.customerNumberForInfoReq;
   connection.query(
-    "SELECT * FROM orders CROSS JOIN orderdetails CROSS JOIN products WHERE customerNumber = " +
-      costumerNumberReadyForQuery +
+    "SELECT * FROM orders CROSS JOIN orderdetails CROSS JOIN products WHERE customernumber = " +
+      costumerNumber +
       " and orders.orderNumber = orderdetails.orderNumber and orderdetails.productCode = products.productCode ORDER BY orders.orderDate;",
     function(err, rows, fields) {
       if (err) {

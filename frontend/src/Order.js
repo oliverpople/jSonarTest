@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Products from "./Products.js";
 
 class Order extends Component {
   constructor(props) {
@@ -10,8 +11,24 @@ class Order extends Component {
       shippedDate: this.props.orderDetails[0].shippedDate,
       status: this.props.orderDetails[0].status,
       comments: this.props.orderDetails[0].comments,
-      customerNumber: this.props.orderDetails[0].customerNumber
+      customerNumber: this.props.orderDetails[0].customerNumber,
+      allOrderDetails: this.props.orderDetails
     };
+    this.listSelectedOrderProdcutDetails = this.listSelectedOrderProdcutDetails.bind(
+      this
+    );
+  }
+
+  listSelectedOrderProdcutDetails() {
+    var allOrderDetails = this.state.allOrderDetails;
+    for (var i = 0; i < allOrderDetails.length; i++) {
+      var listProductDetails = allOrderDetails.map((productDetails, index) => (
+        <li>
+          <Products key={index} productDetails={productDetails} />
+        </li>
+      ));
+      return <ul>{listProductDetails}</ul>;
+    }
   }
 
   componentDidMount() {
@@ -34,6 +51,7 @@ class Order extends Component {
           <li>CustomerNumber: {this.state.customerNumber}</li>
           <br />
         </ul>
+        <div>{this.listSelectedOrderProdcutDetails()}</div>
       </div>
     );
   }

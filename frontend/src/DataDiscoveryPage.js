@@ -4,6 +4,7 @@ import AppBar from "material-ui/AppBar";
 import axios from "axios";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
+import Order from "./Order.js";
 var apiBaseUrl = "http://localhost:4000/api/";
 
 const style = {
@@ -17,7 +18,8 @@ class App extends Component {
       customerNames: [],
       nameForFilter: [],
       rawCustomerInfoData: [],
-      customerNumbers: []
+      customerNumbers: [],
+      selectedCustomerOrdersArray: []
     };
     this.getCustomerIdentityData = this.getCustomerIdentityData.bind(this);
     this.listCustomerNames = this.listCustomerNames.bind(this);
@@ -113,10 +115,22 @@ class App extends Component {
     var cleanRawCustomerInfoData = this.cleanRawCustomerInfoData(
       rawCustomerInfoData
     );
-    console.log(cleanRawCustomerInfoData);
+    this.setState({ selectedCustomerOrdersArray: cleanRawCustomerInfoData });
   }
 
-  listSelectedCustomerOrders() {}
+  listSelectedCustomerOrders() {
+    var selectedCustomerOrdersArray = this.state.selectedCustomerOrdersArray;
+    for (var i = 0; i < selectedCustomerOrdersArray.length; i++) {
+      var listOrders = selectedCustomerOrdersArray.map(
+        (orderDetails, index) => (
+          <li>
+            <Order key={index} orderDetails={orderDetails} />
+          </li>
+        )
+      );
+      return <ul>{listOrders}</ul>;
+    }
+  }
 
   cleanRawCustomerInfoData(rawCustomerInfoData) {
     var allSelectedCustomerOrdersArray = [];
@@ -161,6 +175,7 @@ class App extends Component {
           </div>
         </MuiThemeProvider>
         <div>{this.listCustomerNames()}</div>
+        <div>{this.listSelectedCustomerOrders()}</div>
       </div>
     );
   }

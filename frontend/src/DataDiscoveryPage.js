@@ -15,12 +15,13 @@ class App extends Component {
     super(props);
     this.state = {
       customerNames: [],
-      nameForFilter: [],
-      selectedName: []
+      nameForFilter: []
+      // selectedName: ""
     };
     this.getCustomerNameData = this.getCustomerNameData.bind(this);
     this.listCustomerNames = this.listCustomerNames.bind(this);
     this.cleanCustomerNameData = this.cleanCustomerNameData.bind(this);
+    this.handleSelection = this.handleSelection.bind(this);
   }
 
   componentDidMount() {
@@ -51,13 +52,31 @@ class App extends Component {
   listCustomerNames() {
     const customerNames = this.state.customerNames;
     const listNames = customerNames.map((name, index) => (
-      <li key={index}>{name}</li>
+      <li key={index} onClick={event => this.handleSelection({ name })}>
+        {name}
+      </li>
     ));
     return <ul>{listNames}</ul>;
   }
 
+  async handleSelection(name) {
+    var payload = {
+      nameForCustomerInfoReq: name.name
+    };
+    const res = await axios.post(apiBaseUrl + "customerorderinfo", payload);
+    const rawCustomerData = await res.data.customerData;
+    // var cleanFilteredNamedata = this.cleanCustomerNameData(rawFilteredNameData);
+    // this.setState({ customerNames: cleanFilteredNamedata });
+    console.log(res.data.rawCustomerData);
+    if (res.data.code === 200) {
+      console.log("Customer info successfully received");
+    } else {
+      console.log("Customer info not received");
+      alert("Customer info request unsuccessfull");
+    }
+  }
+
   async handleClick(event) {
-    var self = this;
     var payload = {
       nameForFilter: this.state.nameForFilter
     };

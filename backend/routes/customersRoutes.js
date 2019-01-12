@@ -62,12 +62,12 @@ exports.customerfilter = function(req, res) {
 };
 
 exports.customerorderinfo = function(req, res) {
-  // var costumerNumber = req.body.costumerNumber;
-  var costumerNumber = 363; //test
+  var costumerNumber = req.body.nameForCustomerInfoReq;
+  // var costumerNumber = 363; //test
   const costumerNumberReadyForQuery = '"' + costumerNumber + '";';
   connection.query(
     "SELECT * FROM orders CROSS JOIN orderdetails CROSS JOIN products WHERE customerNumber = " +
-      costumerNumber +
+      costumerNumberReadyForQuery +
       " and orders.orderNumber = orderdetails.orderNumber and orderdetails.productCode = products.productCode ORDER BY orders.orderDate;",
     function(err, rows, fields) {
       if (err) {

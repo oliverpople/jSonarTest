@@ -21,13 +21,19 @@ class Order extends Component {
   render() {
     return (
       <div>
-        Order Number: {this.state.orderNumber}
-        Order Date: {this.state.orderDate}
-        Required Date: {this.state.requiredDate}
-        Shipped Date: {this.state.shippedDate}
-        Status: {this.state.status}
-        Comments: {this.state.comments}
-        CustomerNumber: {this.state.customerNumber}
+        <ul>
+          <li>Order Number: {this.state.orderNumber}</li>
+          <li>Order Date: {this.state.orderDate}</li>
+          <li>Required Date: {this.state.requiredDate}</li>
+          <li>Shipped Date: {this.state.shippedDate}</li>
+          <li>Status: {this.state.status}</li>
+          <li>
+            Comments:{" "}
+            {this.state.comments === null ? "n/a" : this.state.comments}
+          </li>
+          <li>CustomerNumber: {this.state.customerNumber}</li>
+          <br />
+        </ul>
       </div>
     );
   }

@@ -29,7 +29,7 @@ exports.customernames = function(req, res) {
         res.send({
           code: 200,
           success: "customer names received",
-          customerData: rows
+          customerIdData: rows
         });
       }
     }
@@ -53,7 +53,7 @@ exports.customerfilter = function(req, res) {
         res.send({
           code: 200,
           success: "customer names filtered",
-          customerData: rows
+          customerNameData: rows
         });
       }
     }
@@ -77,7 +77,7 @@ exports.customerorderinfo = function(req, res) {
         res.send({
           code: 200,
           success: "customer names filtered",
-          customerData: rows
+          customerInfoData: rows
         });
       }
     }

@@ -33,7 +33,7 @@ class App extends Component {
 
   async getCustomerIdentityData() {
     const res = await axios.get(apiBaseUrl + "customernames");
-    const rawCustomerIdentityData = await res.data.customerData;
+    const rawCustomerIdentityData = await res.data.customerIdData;
     var cleanNameData = this.cleanCustomerNameData(rawCustomerIdentityData);
     var cleanCustomerNumberData = this.cleanCustomerNumberData(
       rawCustomerIdentityData
@@ -81,7 +81,7 @@ class App extends Component {
       customerNumberForInfoReq: customerNumberForInfoReq
     };
     const res = await axios.post(apiBaseUrl + "customerorderinfo", payload);
-    const rawCustomerInfoData = await res.data.customerData;
+    const rawCustomerInfoData = await res.data.customerInfoData;
     this.setState({ rawCustomerInfoData: rawCustomerInfoData });
     if (res.data.code === 200) {
       console.log("Customer info successfully received");
@@ -96,10 +96,10 @@ class App extends Component {
       nameForFilter: this.state.nameForFilter
     };
     const res = await axios.post(apiBaseUrl + "customerfilter", payload);
-    const rawFilteredNameData = await res.data.customerData;
+    const rawFilteredNameData = await res.data.customerNameData;
     var cleanFilteredNamedata = this.cleanCustomerNameData(rawFilteredNameData);
     this.setState({ customerNames: cleanFilteredNamedata });
-    console.log(res.data.customerData[0].customername);
+    console.log(res.data.customerNameData[0].customername);
     if (res.data.code === 200) {
       console.log("Filter successfull");
     } else {

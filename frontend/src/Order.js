@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Products from "./Products.js";
+import Card from "@material-ui/core/Card";
 
 class Order extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Order extends Component {
 
   render() {
     return (
-      <div>
+      <Card className={"orders-list"}>
         <ul>
           <li>Order Number: {this.state.orderNumber}</li>
           <li>Order Date: {this.state.orderDate}</li>
@@ -52,7 +53,7 @@ class Order extends Component {
           <br />
         </ul>
         <div>{this.listSelectedOrderProductDetails()}</div>;
-      </div>
+      </Card>
     );
   }
 }

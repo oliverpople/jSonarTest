@@ -5,6 +5,7 @@ import axios from "axios";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import Order from "./Order.js";
+import Card from "@material-ui/core/Card";
 var apiBaseUrl = "http://localhost:4000/api/";
 
 const style = {
@@ -185,7 +186,11 @@ class App extends Component {
             />
           </div>
         </MuiThemeProvider>
-        <div>{this.listCustomerNames()}</div>
+        <div className={"name-list-container"}>
+          <Card className={"name-list"}>
+            <div>{this.listCustomerNames()}</div>
+          </Card>
+        </div>
         <div>{this.listSelectedCustomerOrders()}</div>
       </div>
     );

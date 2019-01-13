@@ -84,7 +84,7 @@ class App extends Component {
         />
       </ListItem>
     ));
-    return <List>{listNames}</List>;
+    return <List id="names-list">{listNames}</List>;
   }
 
   async handleFilter(event) {
@@ -178,6 +178,7 @@ class App extends Component {
         <div className="search-box-container">
           <MuiThemeProvider>
             <TextField
+              id="search-box"
               className="search-box"
               hintText="Search Name"
               floatingLabelText="Search Name"

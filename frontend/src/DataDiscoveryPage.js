@@ -170,7 +170,9 @@ class App extends Component {
       <div className="App">
         <MuiThemeProvider>
           <AppBar title="Data Discovery Page" />
-          <div className="search-box-container">
+        </MuiThemeProvider>
+        <div className="search-box-container">
+          <MuiThemeProvider>
             <TextField
               className="search-box"
               hintText="Search Name"
@@ -179,7 +181,8 @@ class App extends Component {
                 this.setState({ nameForFilter: newValue })
               }
             />
-            <br />
+          </MuiThemeProvider>
+          <MuiThemeProvider>
             <div className="search-button-container">
               <RaisedButton
                 className="search-button"
@@ -192,8 +195,8 @@ class App extends Component {
                 }
               />
             </div>
-          </div>
-        </MuiThemeProvider>
+          </MuiThemeProvider>
+        </div>
         <div className={"name-list-container"}>
           <Card className={"name-list"}>
             <div>{this.listCustomerNames()}</div>

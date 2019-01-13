@@ -64,6 +64,7 @@ class Login extends Component {
         <MuiThemeProvider key="local-login-Component">
           <div>
             <TextField
+              id="username-field"
               hintText="Enter your username"
               floatingLabelText="username"
               onChange={(event, newValue) =>
@@ -72,6 +73,7 @@ class Login extends Component {
             />
             <br />
             <TextField
+              id="password-field"
               type="password"
               hintText="Enter your Password"
               floatingLabelText="Password"
@@ -81,6 +83,7 @@ class Login extends Component {
             />
             <br />
             <RaisedButton
+              id="login-submit-button"
               label="Submit"
               primary={true}
               style={style}

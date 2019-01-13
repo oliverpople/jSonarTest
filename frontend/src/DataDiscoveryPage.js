@@ -189,6 +189,7 @@ class App extends Component {
           <MuiThemeProvider>
             <div className="search-button-container">
               <RaisedButton
+                id="search-button"
                 className="search-button"
                 label={this.state.searchSubmitted ? "See List" : "submit"}
                 primary={true}

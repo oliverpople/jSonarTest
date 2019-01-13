@@ -8,8 +8,8 @@ import Order from "./Order.js";
 import { Card, List, ListItemText, ListItem } from "@material-ui/core";
 var apiBaseUrl = "http://localhost:4000/api/";
 
-const style = {
-  margin: 15
+const cardStyle = {
+  boxShadow: "0 10px 18px rgba(0,0,0,0.25)"
 };
 
 class App extends Component {
@@ -20,7 +20,8 @@ class App extends Component {
       nameForFilter: [],
       rawCustomerInfoData: [],
       customerNumbers: [],
-      selectedCustomerOrdersArray: []
+      selectedCustomerOrdersArray: [],
+      searchSubmitted: false
     };
     this.getCustomerIdentityData = this.getCustomerIdentityData.bind(this);
     this.listCustomerNames = this.listCustomerNames.bind(this);
@@ -39,6 +40,7 @@ class App extends Component {
   }
 
   async getCustomerIdentityData() {
+    this.setState({ searchSubmitted: false });
     const res = await axios.get(apiBaseUrl + "customernames");
     const rawCustomerIdentityData = await res.data.customerIdData;
     var cleanNameData = this.cleanCustomerNameData(rawCustomerIdentityData);
@@ -86,6 +88,7 @@ class App extends Component {
   }
 
   async handleFilter(event) {
+    this.setState({ searchSubmitted: true });
     var payload = {
       nameForFilter: this.state.nameForFilter
     };
@@ -93,7 +96,6 @@ class App extends Component {
     const rawFilteredNameData = await res.data.customerNameData;
     var cleanFilteredNamedata = this.cleanCustomerNameData(rawFilteredNameData);
     this.setState({ customerNames: cleanFilteredNamedata });
-    console.log(res.data.customerNameData[0].customername);
     if (res.data.code === 200) {
       console.log("Filter successfull");
     } else {
@@ -172,25 +174,35 @@ class App extends Component {
       <div className="App">
         <MuiThemeProvider>
           <AppBar title="Data Discovery Page" />
-          <div>
+        </MuiThemeProvider>
+        <div className="search-box-container">
+          <MuiThemeProvider>
             <TextField
+              className="search-box"
               hintText="Search Name"
               floatingLabelText="Search Name"
               onChange={(event, newValue) =>
                 this.setState({ nameForFilter: newValue })
               }
             />
-            <br />
-            <RaisedButton
-              label="Submit"
-              primary={true}
-              style={style}
-              onClick={event => this.handleFilter(event)}
-            />
-          </div>
-        </MuiThemeProvider>
+          </MuiThemeProvider>
+          <MuiThemeProvider>
+            <div className="search-button-container">
+              <RaisedButton
+                className="search-button"
+                label={this.state.searchSubmitted ? "See List" : "submit"}
+                primary={true}
+                onClick={
+                  this.state.searchSubmitted
+                    ? event => this.getCustomerIdentityData()
+                    : event => this.handleFilter(event)
+                }
+              />
+            </div>
+          </MuiThemeProvider>
+        </div>
         <div className={"name-list-container"}>
-          <Card className={"name-list"}>
+          <Card style={cardStyle} className={"name-list"}>
             <div>{this.listCustomerNames()}</div>
           </Card>
         </div>

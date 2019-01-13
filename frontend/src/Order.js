@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Products from "./Products.js";
-import Card from "@material-ui/core/Card";
+import { Card } from "@material-ui/core";
+
+const cardStyle = {
+  boxShadow: "0 10px 18px rgba(0,0,0,0.25)"
+};
 
 class Order extends Component {
   constructor(props) {
@@ -38,22 +42,24 @@ class Order extends Component {
 
   render() {
     return (
-      <Card className={"orders-list"}>
-        <ul>
-          <li>Order Number: {this.state.orderNumber}</li>
-          <li>Order Date: {this.state.orderDate}</li>
-          <li>Required Date: {this.state.requiredDate}</li>
-          <li>Shipped Date: {this.state.shippedDate}</li>
-          <li>Status: {this.state.status}</li>
-          <li>
-            Comments:{" "}
-            {this.state.comments === null ? "n/a" : this.state.comments}
-          </li>
-          <li>Customer Number: {this.state.customerNumber}</li>
-          <br />
-        </ul>
-        <div>{this.listSelectedOrderProductDetails()}</div>;
-      </Card>
+      <div style={cardStyle} className={"orders-list-container"}>
+        <Card className={"orders-list"}>
+          <ul>
+            <li className={"title"}>Order Number: {this.state.orderNumber}</li>
+            <li>Order Date: {this.state.orderDate}</li>
+            <li>Required Date: {this.state.requiredDate}</li>
+            <li>Shipped Date: {this.state.shippedDate}</li>
+            <li>Status: {this.state.status}</li>
+            <li>
+              Comments:{" "}
+              {this.state.comments === null ? "n/a" : this.state.comments}
+            </li>
+            <li>Customer Number: {this.state.customerNumber}</li>
+            <br />
+          </ul>
+          <div>{this.listSelectedOrderProductDetails()}</div>
+        </Card>
+      </div>
     );
   }
 }

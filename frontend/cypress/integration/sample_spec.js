@@ -31,14 +31,33 @@ describe("Data Discovery Page renders", function() {
     cy.get("#search-button").click();
     cy.get("#names-list").contains("Atelier graphique");
   });
+
+  it("Clicking name on list renders customer order and product detail field names", function() {
+    cy.get("#names-list > :nth-child(1)")
+      .contains("Atelier graphique")
+      .click();
+    cy.get(".orders-list").contains("Order Date:");
+    cy.get(".orders-list").contains("Required Date:");
+    cy.get(".orders-list").contains("Shipped Date:");
+    cy.get(".orders-list").contains("Status:");
+    cy.get(".orders-list").contains("Comments:");
+    cy.get(".orders-list").contains("Customer Number:");
+
+    cy.get(".products-list").contains("Product Name:");
+    cy.get(".products-list").contains("Product Code:");
+    cy.get(".products-list").contains("MSRP:");
+    cy.get(".products-list").contains("Buy Price:");
+    cy.get(".products-list").contains("Order Line Number:");
+    cy.get(".products-list").contains("Price Each:");
+    cy.get(".products-list").contains("Product Description:");
+    cy.get(".products-list").contains("Product Line:");
+    cy.get(".products-list").contains("Product Scale:");
+    cy.get(".products-list").contains("Product Vendor:");
+    cy.get(".products-list").contains("Quantity In Stock:");
+    cy.get(".products-list").contains("Quantity Ordered:");
+  });
 });
 
-//
-// find search box
-// type in name
-// hit submit button
-// name appars in list
-//
 // find name in list
 // click name
 // orders appear

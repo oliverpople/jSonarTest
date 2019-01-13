@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Products from "./Products.js";
-import { Card, List, ListItemText, ListItem } from "@material-ui/core";
+import { Card } from "@material-ui/core";
 
 class Order extends Component {
   constructor(props) {

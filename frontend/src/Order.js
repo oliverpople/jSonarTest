@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Products from "./Products.js";
 import { Card } from "@material-ui/core";
 
+const cardStyle = {
+  boxShadow: "0 10px 18px rgba(0,0,0,0.25)"
+};
+
 class Order extends Component {
   constructor(props) {
     super(props);
@@ -38,10 +42,10 @@ class Order extends Component {
 
   render() {
     return (
-      <div className={"orders-list-container"}>
+      <div style={cardStyle} className={"orders-list-container"}>
         <Card className={"orders-list"}>
           <ul>
-            <li>Order Number: {this.state.orderNumber}</li>
+            <li className={"title"}>Order Number: {this.state.orderNumber}</li>
             <li>Order Date: {this.state.orderDate}</li>
             <li>Required Date: {this.state.requiredDate}</li>
             <li>Shipped Date: {this.state.shippedDate}</li>

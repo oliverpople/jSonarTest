@@ -90,3 +90,7 @@ ul {
   padding-top: 19px;
   text-align: left;
 }
+
+.title {
+  font-weight: bold;
+}

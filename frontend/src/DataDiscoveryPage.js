@@ -8,6 +8,10 @@ import Order from "./Order.js";
 import { Card, List, ListItemText, ListItem } from "@material-ui/core";
 var apiBaseUrl = "http://localhost:4000/api/";
 
+const cardStyle = {
+  boxShadow: "0 10px 18px rgba(0,0,0,0.25)"
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -198,7 +202,7 @@ class App extends Component {
           </MuiThemeProvider>
         </div>
         <div className={"name-list-container"}>
-          <Card className={"name-list"}>
+          <Card style={cardStyle} className={"name-list"}>
             <div>{this.listCustomerNames()}</div>
           </Card>
         </div>

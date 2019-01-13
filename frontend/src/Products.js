@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Card } from "@material-ui/core";
 
+const cardStyle = {
+  boxShadow: "0 10px 18px rgba(0,0,0,0.25)"
+};
+
 class Products extends Component {
   constructor(props) {
     super(props);
@@ -27,16 +31,16 @@ class Products extends Component {
   render() {
     return (
       <div className={"products-list-container"}>
-        <Card className={"products-list"}>
+        <Card style={cardStyle} className={"products-list"}>
           <ul>
+            <li className={"title"}>Product Name: {this.state.productName}</li>
+            <li>Product Code: {this.state.productCode}</li>
             <li>MSRP: {this.state.MSRP}</li>
             <li>Buy Price: {this.state.buyPrice}</li>
             <li>Order Line Number: {this.state.orderLineNumber}</li>
             <li>Price Each: {this.state.priceEach}</li>
-            <li>Product Code: {this.state.productCode}</li>
             <li>Product Description: {this.state.productDescription}</li>
             <li>Product Line: {this.state.productLine}</li>
-            <li>Product Name: {this.state.productName}</li>
             <li>Product Scale: {this.state.productScale}</li>
             <li>Product Vendor: {this.state.productVendor}</li>
             <li>Quantity In Stock: {this.state.quantityInStock}</li>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Card } from "@material-ui/core";
 
 class Products extends Component {
   constructor(props) {
@@ -25,22 +26,24 @@ class Products extends Component {
 
   render() {
     return (
-      <div>
-        <ul>
-          <li>MSRP: {this.state.MSRP}</li>
-          <li>Buy Price: {this.state.buyPrice}</li>
-          <li>Order Line Number: {this.state.orderLineNumber}</li>
-          <li>Price Each: {this.state.priceEach}</li>
-          <li>Product Code: {this.state.productCode}</li>
-          <li>Product Description: {this.state.productDescription}</li>
-          <li>Product Line: {this.state.productline}</li>
-          <li>Product Name: {this.state.productName}</li>
-          <li>Product Scale: {this.state.productScale}</li>
-          <li>Product Vendor: {this.state.productVendor}</li>
-          <li>Quantity In Stock: {this.state.quantityInStock}</li>
-          <li>Quantity Ordered: {this.state.quantityOrdered}</li>
-          <br />
-        </ul>
+      <div className={"products-list-container"}>
+        <Card className={"products-list"}>
+          <ul>
+            <li>MSRP: {this.state.MSRP}</li>
+            <li>Buy Price: {this.state.buyPrice}</li>
+            <li>Order Line Number: {this.state.orderLineNumber}</li>
+            <li>Price Each: {this.state.priceEach}</li>
+            <li>Product Code: {this.state.productCode}</li>
+            <li>Product Description: {this.state.productDescription}</li>
+            <li>Product Line: {this.state.productline}</li>
+            <li>Product Name: {this.state.productName}</li>
+            <li>Product Scale: {this.state.productScale}</li>
+            <li>Product Vendor: {this.state.productVendor}</li>
+            <li>Quantity In Stock: {this.state.quantityInStock}</li>
+            <li>Quantity Ordered: {this.state.quantityOrdered}</li>
+            <br />
+          </ul>
+        </Card>
       </div>
     );
   }

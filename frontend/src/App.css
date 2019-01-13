@@ -33,6 +33,24 @@
 
 ul {
   list-style-type: none;
+  margin: 0px;
+  padding-right: 40px;
+}
+
+.search-box-container {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.search-box {
+  width: 100px;
+}
+
+.search-button-container {
+  width: 85%;
+}
+
+.search-button {
 }
 
 .name-list-container {
@@ -45,8 +63,26 @@ ul {
   text-align: left;
 }
 
+.orders-list-container {
+  width: 75%;
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
 .orders-list {
+  padding-top: 19px;
   text-align: left;
-  width: 70%;
-  float: left;
+}
+
+.products-list-container {
+  width: 100%;
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.products-list {
+  padding-top: 19px;
+  text-align: left;
 }

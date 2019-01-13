@@ -172,8 +172,9 @@ class App extends Component {
       <div className="App">
         <MuiThemeProvider>
           <AppBar title="Data Discovery Page" />
-          <div>
+          <div className="search-box-container">
             <TextField
+              className="search-box"
               hintText="Search Name"
               floatingLabelText="Search Name"
               onChange={(event, newValue) =>
@@ -181,12 +182,15 @@ class App extends Component {
               }
             />
             <br />
-            <RaisedButton
-              label="Submit"
-              primary={true}
-              style={style}
-              onClick={event => this.handleFilter(event)}
-            />
+            <div className="search-button-container">
+              <RaisedButton
+                className="search-button"
+                label="Submit"
+                primary={true}
+                style={style}
+                onClick={event => this.handleFilter(event)}
+              />
+            </div>
           </div>
         </MuiThemeProvider>
         <div className={"name-list-container"}>

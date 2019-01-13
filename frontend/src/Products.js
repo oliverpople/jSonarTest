@@ -11,7 +11,7 @@ class Products extends Component {
       priceEach: this.props.productDetails.priceEach,
       productCode: this.props.productDetails.productCode,
       productDescription: this.props.productDetails.productDescription,
-      productline: this.props.productDetails.productline,
+      productLine: this.props.productDetails.productLine,
       productName: this.props.productDetails.productName,
       productScale: this.props.productDetails.productScale,
       productVendor: this.props.productDetails.productVendor,
@@ -35,7 +35,7 @@ class Products extends Component {
             <li>Price Each: {this.state.priceEach}</li>
             <li>Product Code: {this.state.productCode}</li>
             <li>Product Description: {this.state.productDescription}</li>
-            <li>Product Line: {this.state.productline}</li>
+            <li>Product Line: {this.state.productLine}</li>
             <li>Product Name: {this.state.productName}</li>
             <li>Product Scale: {this.state.productScale}</li>
             <li>Product Vendor: {this.state.productVendor}</li>

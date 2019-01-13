@@ -40,17 +40,20 @@ ul {
 .search-box-container {
   text-align: left;
   margin-left: 20px;
+  /* margin: 0px; */
+  width: 50%;
 }
 
 .search-box {
-  width: 100px;
 }
 
 .search-button-container {
-  width: 85%;
+  width: 80%;
 }
 
 .search-button {
+  margin-left: 0px;
+  margin-bottom: 20px;
 }
 
 .name-list-container {
@@ -61,12 +64,13 @@ ul {
 
 .name-list {
   text-align: left;
+  margin-left: 10px;
 }
 
 .orders-list-container {
   width: 75%;
   float: right;
-  margin-left: 20px;
+  margin-left: 10px;
   margin-bottom: 20px;
 }
 

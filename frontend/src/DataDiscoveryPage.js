@@ -8,10 +8,6 @@ import Order from "./Order.js";
 import { Card, List, ListItemText, ListItem } from "@material-ui/core";
 var apiBaseUrl = "http://localhost:4000/api/";
 
-const style = {
-  margin: 15
-};
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -187,7 +183,6 @@ class App extends Component {
                 className="search-button"
                 label="Submit"
                 primary={true}
-                style={style}
                 onClick={event => this.handleFilter(event)}
               />
             </div>

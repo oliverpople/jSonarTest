@@ -53,7 +53,7 @@ class Order extends Component {
             <li>Customer Number: {this.state.customerNumber}</li>
             <br />
           </ul>
-          <div>{this.listSelectedOrderProductDetails()}</div>;
+          <div>{this.listSelectedOrderProductDetails()}</div>
         </Card>
       </div>
     );

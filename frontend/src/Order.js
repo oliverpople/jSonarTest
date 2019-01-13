@@ -17,7 +17,9 @@ class Order extends Component {
       status: this.props.orderDetails[0].status,
       comments: this.props.orderDetails[0].comments,
       customerNumber: this.props.orderDetails[0].customerNumber,
-      allOrderDetails: this.props.orderDetails
+      allOrderDetails: this.props.orderDetails,
+
+      customerName: this.props.customerName
     };
     this.listSelectedOrderProductDetails = this.listSelectedOrderProductDetails.bind(
       this
@@ -36,14 +38,15 @@ class Order extends Component {
     }
   }
 
-  componentDidMount() {
-    // console.log(this.props);
-  }
+  // componentDidMount() {
+  //   console.log();
+  // }
 
   render() {
     return (
       <div style={cardStyle} className={"orders-list-container"}>
         <Card className={"orders-list"}>
+          <h3 className={"customer-name-title"}>{this.state.customerName}</h3>
           <ul>
             <li className={"title"}>Order Number: {this.state.orderNumber}</li>
             <li>Order Date: {this.state.orderDate}</li>

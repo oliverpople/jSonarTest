@@ -80,7 +80,7 @@ class App extends Component {
       <ListItem button key={index}>
         <ListItemText
           primary={name}
-          onClick={event => this.handleCustomerClick({ index })}
+          onClick={event => this.handleCustomerClick({ index }, name)}
         />
       </ListItem>
     ));
@@ -104,7 +104,8 @@ class App extends Component {
     }
   }
 
-  async handleCustomerClick(event) {
+  async handleCustomerClick(event, name) {
+    this.setState({ nameForFilter: name });
     var self = this;
     var customerNumberForInfoReq = this.state.customerNumbers[event.index];
     var payload = {
@@ -161,7 +162,10 @@ class App extends Component {
       var listOrders = selectedCustomerOrdersArray.map(
         (orderDetails, index) => (
           <li key={orderDetails[0].orderNumber}>
-            <Order orderDetails={orderDetails} />
+            <Order
+              customerName={this.state.nameForFilter}
+              orderDetails={orderDetails}
+            />
           </li>
         )
       );

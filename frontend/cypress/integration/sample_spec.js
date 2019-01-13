@@ -56,25 +56,19 @@ describe("Data Discovery Page renders", function() {
     cy.get(".products-list").contains("Quantity In Stock:");
     cy.get(".products-list").contains("Quantity Ordered:");
   });
-});
 
-// find name in list
-// click name
-// orders appear
-// - check all details criteria
-// products appear
-// - check all details criteria
-//
-// find submit button
-// submit button says see list
-//
-// find see list button
-// click interval
-// generates list of names
-//
-// type in bad name
-// hit submit
-// name doesnt appars in list
+  it("'Search' button toggles with 'See List'", function() {
+    cy.get("#search-button").contains("See List");
+  });
+
+  it("Clicking list button generate cusomter name list of at least two names", function() {
+    cy.get("#search-button")
+      .contains("See List")
+      .click();
+    cy.get("#names-list > :nth-child(1)");
+    cy.get("#names-list > :nth-child(2)");
+  });
+
 //
 // type in name with no order
 // hit submit

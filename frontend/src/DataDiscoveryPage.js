@@ -17,7 +17,7 @@ class App extends Component {
       rawCustomerInfoData: [],
       customerNumbers: [],
       selectedCustomerOrdersArray: [],
-      searchSubmitted: false
+      filterSubmitted: false
     };
     this.getCustomerIdentityData = this.getCustomerIdentityData.bind(this);
     this.listCustomerNames = this.listCustomerNames.bind(this);
@@ -36,6 +36,7 @@ class App extends Component {
   }
 
   async getCustomerIdentityData() {
+    this.setState({ filterSubmitted: false });
     const res = await axios.get(apiBaseUrl + "customernames");
     const rawCustomerIdentityData = await res.data.customerIdData;
     var cleanNameData = this.cleanCustomerNameData(rawCustomerIdentityData);
@@ -83,7 +84,8 @@ class App extends Component {
   }
 
   async handleFilter(event) {
-    this.setState({ searchSubmitted: true });
+    console.log(this.state.filterSubmitted);
+    this.setState({ filterSubmitted: true });
     var payload = {
       nameForFilter: this.state.nameForFilter
     };
@@ -128,7 +130,6 @@ class App extends Component {
   }
 
   cleanRawCustomerInfoData(rawCustomerInfoData) {
-    this.setState({ searchSubmitted: false });
     var allSelectedCustomerOrdersArray = [];
     var orderSubArray = [];
     var previousOrderNumber = rawCustomerInfoData[0].orderNumber;
@@ -186,10 +187,10 @@ class App extends Component {
             <div className="search-button-container">
               <RaisedButton
                 className="search-button"
-                label={this.state.searchSubmitted ? "See List" : "submit"}
+                label={this.state.filterSubmitted ? "See List" : "submit"}
                 primary={true}
                 onClick={
-                  this.state.searchSubmitted
+                  this.state.filterSubmitted
                     ? event => this.getCustomerIdentityData()
                     : event => this.handleFilter(event)
                 }

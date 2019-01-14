@@ -1,0 +1,100 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding-right: 40px;
+}
+
+.search-box-container {
+  text-align: left;
+  margin-left: 20px;
+  /* margin: 0px; */
+  width: 50%;
+}
+
+.search-box {
+}
+
+.search-button-container {
+  width: 80%;
+}
+
+.search-button {
+  margin-left: 0px;
+  margin-bottom: 20px;
+}
+
+.name-list-container {
+  width: 25%;
+  float: left;
+  min-height: 100%;
+}
+
+.name-list {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.orders-list-container {
+  width: 75%;
+  float: right;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.orders-list {
+  padding-top: 19px;
+  text-align: left;
+}
+
+.products-list-container {
+  width: 100%;
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.products-list {
+  padding-top: 19px;
+  text-align: left;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.customer-name-title {
+  text-align: center;
+}

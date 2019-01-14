@@ -1,4 +1,24 @@
 {
- "schemaVersion" :1 ,
- "dockerfileLines": ["FROM node:8.7.0", "COPY ./src/build /app", "RUN chmod -R 777 /app"]
+ "schemaVersion":1 ,
+ "dockerfileLines" :[
+                       "FROM node:8.7.0-alpine",
+                       "RUN mkdir -p /usr/src/frontend",
+                       "COPY ./src/client /usr/src/frontend",
+                       "WORKDIR /usr/src/frontend",
+                       "RUN npm install && npm cache clean --force",
+                       "RUN npm run build   ## THIS IS THE COMMAND THAT BUILDS FRONTEND CODE, IT MIGHT BE DIFFERENT DEPENDING YOUR PACKAGE.JSON",
+                       "RUN mkdir -p /usr/src/app",
+                       "WORKDIR /usr/src/app",
+                       "COPY ./src/package.json /usr/src/app/",
+                       "RUN npm install && npm cache clean --force",
+                       "COPY ./src /usr/src/app",
+                       "RUN ls /usr/src/frontend/",
+                       "RUN ls /usr/src/frontend/build",
+                       "RUN ls /usr/src/frontend/build/static",
+                       "COPY /usr/src/frontend/build /usr/src/app/  ## DIRECTORIES MAY CHANGE DEPENDING ON YOUR PACKAGE.JSON CONFIG",
+                       "ENV NODE_ENV production",
+                       "ENV PORT 80",
+                       "EXPOSE 80",
+                       "CMD [ \"npm\", \"start\" ]"
+                   ]
 }

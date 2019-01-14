@@ -1,4 +1,4 @@
 {
  "schemaVersion" :1 ,
- "dockerfileLines": ["FROM node:8.7.0", "COPY ./frontend/build /app", "RUN chmod -R 777 /app"]
+ "dockerfileLines": ["FROM node:8.7.0", "COPY ./src/build /app", "RUN chmod -R 777 /app"]
 }

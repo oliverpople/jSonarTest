@@ -66,6 +66,7 @@ class Register extends Component {
           <div>
             <AppBar title="Register" />
             <TextField
+              id="register-username-input"
               hintText="Enter your username"
               floatingLabelText="username"
               onChange={(event, newValue) =>
@@ -74,6 +75,7 @@ class Register extends Component {
             />
             <br />
             <TextField
+              id="register-password-input"
               type="password"
               hintText="Enter your Password"
               floatingLabelText="Password"
@@ -83,6 +85,7 @@ class Register extends Component {
             />
             <br />
             <RaisedButton
+              id="register-submit"
               label="Submit"
               primary={true}
               style={style}

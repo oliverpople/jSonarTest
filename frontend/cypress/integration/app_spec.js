@@ -1,4 +1,4 @@
-describe("Login test 1", function() {
+describe("Loggin In", function() {
   it("Visits the login page and types in details", function() {
     cy.visit("http://localhost:3000/");
 
@@ -68,23 +68,37 @@ describe("Data Discovery Page renders", function() {
     cy.get("#names-list > :nth-child(1)");
     cy.get("#names-list > :nth-child(2)");
   });
+});
 
-//
-// type in name with no order
-// hit submit
-// alert 'customer has no Orders'
+describe("User can register then log in", function() {
+  it("User enters register details and logs onto data discovery page", function() {
+    cy.visit("http://localhost:3000/");
 
-// describe("User can register th log in", function() {
-//   it("Visit the login page", function() {
-//     cy.visit("http://localhost:3000/");
-//
-//     cy.get("#username-field")
-//       .type("Test1")
-//       .should("have.value", "Test1");
-//
-//     cy.get("#password-field")
-//       .type("test1@mytest.com")
-//       .should("have.value", "test1@mytest.com");
-//   });
-//
-// });
+    cy.get("#register-button")
+      // .should("have.attr", "label", "reqegister")
+      .contains("Register")
+      .click();
+
+    cy.get("#register-username-input")
+      .type("Test2")
+      .should("have.value", "Test2");
+
+    cy.get("#register-password-input")
+      .type("test2@mytest.com")
+      .should("have.value", "test2@mytest.com");
+
+    cy.get("#register-submit")
+      .contains("Submit")
+      .click();
+
+    cy.get("#username-field")
+      .type("Test2")
+      .should("have.value", "Test2");
+
+    cy.get("#password-field")
+      .type("test2@mytest.com")
+      .should("have.value", "test2@mytest.com");
+    cy.get("#login-submit-button").click();
+    cy.contains("Data Discovery Page");
+  });
+});

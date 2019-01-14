@@ -1,7 +1,7 @@
 require("dotenv").config();
 var mysql = require("mysql");
 var connection = mysql.createConnection({
-  host: "localhost",
+  host: "srv-captain--mysql-container",
   user: "root",
   password: process.env.DB_PASSWORD,
   database: "classicmodels"

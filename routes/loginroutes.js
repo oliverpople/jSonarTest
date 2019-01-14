@@ -2,12 +2,13 @@ require("dotenv").config();
 var mysql = require("mysql");
 var jsonfile = require("jsonfile");
 var connection = mysql.createConnection({
-  host: "localhost",
+  host: "srv-captain--mysql-container",
   user: "root",
   password: process.env.DB_PASSWORD,
   database: "jsonar_db",
   insecureAuth: false
 });
+
 connection.connect(function(err) {
   if (!err) {
     console.log("User account database is connected ... nn");

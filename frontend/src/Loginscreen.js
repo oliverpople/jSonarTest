@@ -40,6 +40,7 @@ class Loginscreen extends Component {
         <MuiThemeProvider>
           <div>
             <RaisedButton
+              id="register-button"
               label={"Register"}
               primary={true}
               style={style}

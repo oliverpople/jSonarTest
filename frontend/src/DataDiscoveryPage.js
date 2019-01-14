@@ -80,11 +80,11 @@ class App extends Component {
       <ListItem button key={index}>
         <ListItemText
           primary={name}
-          onClick={event => this.handleCustomerClick({ index })}
+          onClick={event => this.handleCustomerClick({ index }, name)}
         />
       </ListItem>
     ));
-    return <List>{listNames}</List>;
+    return <List id="names-list">{listNames}</List>;
   }
 
   async handleFilter(event) {
@@ -104,7 +104,8 @@ class App extends Component {
     }
   }
 
-  async handleCustomerClick(event) {
+  async handleCustomerClick(event, name) {
+    this.setState({ nameForFilter: name });
     var self = this;
     var customerNumberForInfoReq = this.state.customerNumbers[event.index];
     var payload = {
@@ -161,7 +162,10 @@ class App extends Component {
       var listOrders = selectedCustomerOrdersArray.map(
         (orderDetails, index) => (
           <li key={orderDetails[0].orderNumber}>
-            <Order orderDetails={orderDetails} />
+            <Order
+              customerName={this.state.nameForFilter}
+              orderDetails={orderDetails}
+            />
           </li>
         )
       );
@@ -178,6 +182,7 @@ class App extends Component {
         <div className="search-box-container">
           <MuiThemeProvider>
             <TextField
+              id="search-box"
               className="search-box"
               hintText="Search Name"
               floatingLabelText="Search Name"
@@ -189,6 +194,7 @@ class App extends Component {
           <MuiThemeProvider>
             <div className="search-button-container">
               <RaisedButton
+                id="search-button"
                 className="search-button"
                 label={this.state.searchSubmitted ? "See List" : "submit"}
                 primary={true}

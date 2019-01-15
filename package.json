@@ -18,6 +18,7 @@
   "homepage": "https://github.com/oliverpople/jSonarTest#readme",
   "dependencies": {
     "async": "^2.1.5",
+    "cookie-parser": "~1.4.3",
     "body-parser": "^1.16.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",

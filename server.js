@@ -1,5 +1,6 @@
 var express = require("express");
 var login = require("./routes/loginroutes");
+var cookieParser = require("cookie-parser");
 var customersRoutes = require("./routes/customersRoutes");
 var bodyParser = require("body-parser");
 var app = express();
@@ -16,6 +17,7 @@ app.use(function(req, res, next) {
 });
 var router = express.Router();
 
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "build")));
 
 app.get("/", function(req, res) {

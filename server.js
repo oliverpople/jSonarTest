@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 });
 var router = express.Router();
 
-app.use(express.static(path.join("__dirname", "build")));
+app.use(express.static(path.join(__dirname, "build")));
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
@@ -33,4 +33,4 @@ router.get("/customernames", customersRoutes.customernames);
 router.post("/customerfilter", customersRoutes.customerfilter);
 router.post("/customerorderinfo", customersRoutes.customerorderinfo);
 app.use("/api", router);
-app.listen(80);
+app.listen(4000);

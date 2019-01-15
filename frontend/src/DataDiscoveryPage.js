@@ -25,7 +25,7 @@ class App extends Component {
     };
     this.getCustomerIdentityData = this.getCustomerIdentityData.bind(this);
     this.listCustomerNames = this.listCustomerNames.bind(this);
-    this.cleanCustomerData = this.cleanCustomerData.bind(this);
+    this.cleanCustomerIdentityData = this.cleanCustomerIdentityData.bind(this);
     this.handleCustomerClick = this.handleCustomerClick.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
     this.listSelectedCustomerOrders = this.listSelectedCustomerOrders.bind(
@@ -42,7 +42,7 @@ class App extends Component {
     this.setState({ searchSubmitted: false });
     const res = await axios.get(apiBaseUrl + "customernames");
     const rawCustomerIdentityData = await res.data.customerIdData;
-    var cleanNameData = this.cleanCustomerData(rawCustomerIdentityData);
+    var cleanNameData = this.cleanCustomerIdentityData(rawCustomerIdentityData);
     this.setState({ customerNames: cleanNameData.cleanCustomerNames });
     this.setState({
       customerNumbers: cleanNameData.cleanCustomerNumbers
@@ -55,7 +55,7 @@ class App extends Component {
     }
   }
 
-  cleanCustomerData(rawCustomerIdentityData) {
+  cleanCustomerIdentityData(rawCustomerIdentityData) {
     var cleanCustomerNameArray = [];
     var cleanCustomerNumberArray = [];
     for (var i = 0; i < rawCustomerIdentityData.length; i++) {

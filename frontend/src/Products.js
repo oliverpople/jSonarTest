@@ -24,10 +24,6 @@ class Products extends Component {
     };
   }
 
-  componentDidMount() {
-    // console.log(this.props);
-  }
-
   render() {
     return (
       <div className={"products-list-container"}>

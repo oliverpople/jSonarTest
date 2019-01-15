@@ -19,6 +19,6 @@
                        "ENV NODE_ENV production",
                        "ENV PORT 80",
                        "EXPOSE 80",
-                       "CMD [ \"nodemon\", \"server.js\" ]"
+                       "CMD nodemon server.js
                    ]
 }

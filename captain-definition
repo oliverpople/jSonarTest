@@ -3,7 +3,7 @@
  "dockerfileLines" :[
                        "FROM node:8.7.0-alpine",
                        "RUN mkdir -p /usr/src/frontend",
-                       "COPY ./src/client /usr/src/client",
+                       "COPY ./src/client /usr/src/frontend",
                        "WORKDIR /usr/src/frontend",
                        "RUN npm install && npm cache clean --force",
                        "RUN npm run build   ## THIS IS THE COMMAND THAT BUILDS FRONTEND CODE, IT MIGHT BE DIFFERENT DEPENDING YOUR PACKAGE.JSON",

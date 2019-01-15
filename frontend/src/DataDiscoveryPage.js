@@ -25,8 +25,7 @@ class App extends Component {
     };
     this.getCustomerIdentityData = this.getCustomerIdentityData.bind(this);
     this.listCustomerNames = this.listCustomerNames.bind(this);
-    this.cleanCustomerNameData = this.cleanCustomerNameData.bind(this);
-    this.cleanCustomerNumberData = this.cleanCustomerNumberData.bind(this);
+    this.cleanCustomerData = this.cleanCustomerData.bind(this);
     this.handleCustomerClick = this.handleCustomerClick.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
     this.listSelectedCustomerOrders = this.listSelectedCustomerOrders.bind(
@@ -43,12 +42,11 @@ class App extends Component {
     this.setState({ searchSubmitted: false });
     const res = await axios.get(apiBaseUrl + "customernames");
     const rawCustomerIdentityData = await res.data.customerIdData;
-    var cleanNameData = this.cleanCustomerNameData(rawCustomerIdentityData);
-    var cleanCustomerNumberData = this.cleanCustomerNumberData(
-      rawCustomerIdentityData
-    );
-    this.setState({ customerNames: cleanNameData });
-    this.setState({ customerNumbers: cleanCustomerNumberData });
+    var cleanNameData = this.cleanCustomerData(rawCustomerIdentityData);
+    this.setState({ customerNames: cleanNameData.cleanCustomerNames });
+    this.setState({
+      customerNumbers: cleanNameData.cleanCustomerNumbers
+    });
     if (res.data.code === 200) {
       console.log("Customer names successfully recieved");
     } else {
@@ -57,21 +55,17 @@ class App extends Component {
     }
   }
 
-  cleanCustomerNameData(rawCustomerIdentityData) {
+  cleanCustomerData(rawCustomerIdentityData) {
     var cleanCustomerNameArray = [];
-    for (var i = 0; i < rawCustomerIdentityData.length; i++) {
-      cleanCustomerNameArray.push(rawCustomerIdentityData[i].customername);
-    }
-    return cleanCustomerNameArray;
-  }
-
-  //DRY up remove duplication
-  cleanCustomerNumberData(rawCustomerIdentityData) {
     var cleanCustomerNumberArray = [];
     for (var i = 0; i < rawCustomerIdentityData.length; i++) {
+      cleanCustomerNameArray.push(rawCustomerIdentityData[i].customername);
       cleanCustomerNumberArray.push(rawCustomerIdentityData[i].customernumber);
     }
-    return cleanCustomerNumberArray;
+    return {
+      cleanCustomerNames: cleanCustomerNameArray,
+      cleanCustomerNumbers: cleanCustomerNumberArray
+    };
   }
 
   listCustomerNames() {

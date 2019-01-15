@@ -68,15 +68,15 @@ So it’s easy to view the order details of multiple users in quick succession.
 
 ## Dependencies
 
-[Express.js](https://expressjs.com/) Node framework
-[Create-react-app](https://github.com/facebook/create-react-app) frontend scaffolding
-Sample data has been provided by [mysqltutorial](http://www.mysqltutorial.org/mysql-sample-database.aspx)
-End-to-end testing with [cypress.js](https://www.cypress.io/)
-GUI components from [material-ui](https://material-ui.com/)
+[Express.js](https://expressjs.com/) Node framework  
+[Create-react-app](https://github.com/facebook/create-react-app) frontend scaffolding  
+Sample data has been provided by [mysqltutorial](http://www.mysqltutorial.org/mysql-sample-database.aspx)  
+End-to-end testing with [Cypress.js](https://www.cypress.io/)  
+GUI components from [Material-ui](https://material-ui.com/)
 
 ## To Do:
 
-- Demonstrate Runnable/packaged binaries on Nginx. Deploy app and database using [captainduckduck](captainhttps://captainduckduck.com)
+- Demonstrate Runnable/packaged binaries on Nginx. Deploy app and database using [Captain Duck Duck](https://captainduckduck.com)
 - Improve responsiveness on mobile
 - Write test checking order data renders in chronological order
 - Write test checking order details render (i.e. not just detail field names)

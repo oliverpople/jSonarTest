@@ -1,7 +1,7 @@
 {
  "schemaVersion":1 ,
  "dockerfileLines" :[
-                       "FROM node:10.8.0",
+                       "FROM node/10.8.0",
                        "RUN mkdir -p /usr/src/frontend",
                        "COPY ./src/client /usr/src/frontend",
                        "WORKDIR /usr/src/frontend",

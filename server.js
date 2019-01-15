@@ -26,7 +26,6 @@ app.get("/", function(req, res) {
 // router.get("/", function(req, res) {
 //   res.json({ message: "welcome to our apis" });
 // });
-
 router.post("/register", login.register);
 router.post("/login", login.login);
 router.get("/customernames", customersRoutes.customernames);

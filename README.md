@@ -11,20 +11,20 @@ First checkout this repo, then install and run the dependencies with the followi
 ```
 $ git clone git@github.com:oliverpople/jSonarTest.git
 $ cd jSonarTest
-$ cd jSonarTest/backend
 $ npm i
-$ cd jSonarTest/frontend
+$ cd jSonarTest/client
 $ npm i
 ```
 
 To run Express server use the following commands in a new tab:
 
 ```
-$ cd jSonarTest/backend
-$ nodemon server.js
+$ cd jSonarTest
+$ node server.js
 ```
 
-To run react client use the following commands in a separate tab:
+To run react client use t
+he following commands in a separate tab:
 
 ```
 $ cd jSonarTest/client

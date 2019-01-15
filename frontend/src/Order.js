@@ -38,10 +38,6 @@ class Order extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   console.log();
-  // }
-
   render() {
     return (
       <div style={cardStyle} className={"orders-list-container"}>

@@ -14,7 +14,7 @@
                        "COPY ./src /usr/src/app",
                        "RUN ls /usr/src/frontend/",
                        "RUN ls /usr/src/frontend/build",
-                  
+                       "RUN ls /usr/src/frontend/build/static",
                        "RUN cp /usr/src/frontend/build /usr/src/app/  ## DIRECTORIES MAY CHANGE DEPENDING ON YOUR PACKAGE.JSON CONFIG",
                        "ENV NODE_ENV production",
                        "ENV PORT 80",

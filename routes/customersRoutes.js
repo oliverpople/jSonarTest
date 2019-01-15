@@ -1,10 +1,10 @@
 require("dotenv").config();
 var mysql = require("mysql");
 var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: process.env.DB_PASSWORD,
-  database: "classicmodels"
+  host: "us-cdbr-iron-east-01.cleardb.net/",
+  user: "bf52f44a1f43ca",
+  password: process.env.CUSTOMER_DB_PASSWORD,
+  database: "heroku_dd79f4fd939ad83"
 });
 
 connection.connect(function(err) {

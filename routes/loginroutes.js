@@ -2,10 +2,10 @@ require("dotenv").config();
 var mysql = require("mysql");
 var jsonfile = require("jsonfile");
 var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: process.env.DB_PASSWORD,
-  database: "jsonar_db",
+  host: "us-cdbr-iron-east-01.cleardb.net",
+  user: "ba50dfdbfcbb32",
+  password: process.env.USERS_DB_PASSWORD,
+  database: "heroku_4c00170ba2be4c7",
   insecureAuth: false
 });
 connection.connect(function(err) {

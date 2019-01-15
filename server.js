@@ -16,10 +16,16 @@ app.use(function(req, res, next) {
 });
 var router = express.Router();
 
-// test route
-router.get("/", function(req, res) {
-  res.json({ message: "welcome to our apis" });
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
+
+// test route
+// router.get("/", function(req, res) {
+//   res.json({ message: "welcome to our apis" });
+// });
 
 router.post("/register", login.register);
 router.post("/login", login.login);

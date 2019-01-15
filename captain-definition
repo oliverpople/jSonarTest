@@ -17,8 +17,8 @@
                        "RUN ls /usr/src/frontend/build/static",
                        "RUN cp -r /usr/src/frontend/build /usr/src/app/  ## DIRECTORIES MAY CHANGE DEPENDING ON YOUR PACKAGE.JSON CONFIG",
                        "ENV NODE_ENV production",
-                       "ENV PORT 443",
-                       "EXPOSE 443",
+                       "ENV PORT 80",
+                       "EXPOSE 80",
                        "CMD [ \"node\", \"server.js\" ]"
 
                    ]

@@ -27,14 +27,14 @@ $ nodemon server.js
 To run react client use the following commands in a separate tab:
 
 ```
-$ cd jSonarTest/client
+$ cd jSonarTest/frontend
 $ npm start
 ```
 
 To run cypress.js tests use the following commands in a separate tab:
 
 ```
-$ cd jSonarTest/client
+$ cd jSonarTest/frontend
 $ ./node_modules/.bin/cypress open
 ```
 

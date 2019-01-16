@@ -3,9 +3,9 @@ var mysql = require("mysql");
 var jsonfile = require("jsonfile");
 var connection = mysql.createConnection({
   host: "us-cdbr-iron-east-01.cleardb.net",
-  user: "ba50dfdbfcbb32",
-  password: process.env.USERS_DB_PASSWORD,
-  database: "heroku_4c00170ba2be4c7",
+  user: "b168a3716d34ba",
+  password: "28f6ca29",
+  database: "heroku_9914b8101fa5760",
   insecureAuth: false
 });
 connection.connect(function(err) {

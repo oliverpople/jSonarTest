@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
   app.get("/", (req, res) => {
     // res.json({ message: "welcome to our apis" });
     // res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });
 }
 

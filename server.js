@@ -28,7 +28,7 @@ router.post("/customerorderinfo", customersRoutes.customerorderinfo);
 app.use("/api", router);
 
 if (process.env.NODE_ENV === "production") {
-  // app.use(express.static("frontend/build"));
+  app.use(express.static("frontend/build"));
   const path = require("path");
   app.get("*", (req, res) => {
     // res.json({ message: "welcome to our apis" });

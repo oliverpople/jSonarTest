@@ -88,10 +88,18 @@ class App extends Component {
     };
     const res = await axios.post(apiBaseUrl + "customerfilter", payload);
     const rawFilteredNameData = await res.data.customerNameData;
-    var cleanFilteredNamedata = this.cleanCustomerNameData(rawFilteredNameData);
-    this.setState({ customerNames: cleanFilteredNamedata });
+    var cleanFilteredNameData = await this.cleanCustomerIdentityData(
+      rawFilteredNameData
+    );
+    this.setState({ customerNames: cleanFilteredNameData.cleanCustomerNames });
     if (res.data.code === 200) {
       console.log("Filter successfull");
+      if (
+        this.state.customerNames < 1 ||
+        this.state.customerNames === undefined
+      ) {
+        alert("No matching customer");
+      }
     } else {
       console.log("Filter unsuccessfull");
       alert("Filter unsuccessfull");

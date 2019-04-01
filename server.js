@@ -27,4 +27,13 @@ router.get("/customernames", customersRoutes.customernames);
 router.post("/customerfilter", customersRoutes.customerfilter);
 router.post("/customerorderinfo", customersRoutes.customerorderinfo);
 app.use("/api", router);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
 app.listen(process.env.PORT || 4000);

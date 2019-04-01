@@ -1,0 +1,21 @@
+{
+  "name": "jsonartest",
+  "version": "1.0.0",
+  "description": "A node.js web app for accessing and viewing customer data.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oliverpople/jSonarTest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oliverpople/jSonarTest/issues"
+  },
+  "homepage": "https://github.com/oliverpople/jSonarTest#readme"
+}

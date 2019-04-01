@@ -1,20 +1,40 @@
 require("dotenv").config();
 var mysql = require("mysql");
 var jsonfile = require("jsonfile");
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
+
+var db_config = {
+  host: "us-cdbr-iron-east-01.cleardb.net",
+  user: "b168a3716d34ba",
   password: process.env.DB_PASSWORD,
-  database: "jsonar_db",
+  database: "heroku_9914b8101fa5760",
   insecureAuth: false
-});
-connection.connect(function(err) {
-  if (!err) {
-    console.log("User account database is connected ... nn");
-  } else {
-    console.log("Error connecting to user account database ... nn", err);
-  }
-});
+};
+
+var connection;
+
+function handleDisconnect() {
+  connection = mysql.createConnection(db_config);
+  connection.connect(function(err) {
+    if (!err) {
+      console.log(
+        "heroku_9914b8101fa5760 (classicmodels) database is connected for login route... nn"
+      );
+    } else {
+      console.log("error when connecting to db:", err);
+      setTimeout(handleDisconnect, 2000);
+    }
+  });
+  connection.on("error", function(err) {
+    console.log("db error", err);
+    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+      handleDisconnect();
+    } else {
+      throw err;
+    }
+  });
+}
+
+handleDisconnect();
 
 exports.register = function(req, res) {
   var today = new Date();

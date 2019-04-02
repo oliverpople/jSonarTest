@@ -6,7 +6,7 @@ import TextField from "material-ui/TextField";
 import axios from "axios";
 import DataDiscoveryPage from "./DataDiscoveryPage";
 var apiBaseUrl =
-  "https://jsonar-test.herokuapp.com/" || "http://localhost:4000/api/";
+  "https://jsonar-test.herokuapp.com/api" || "http://localhost:4000/api/";
 
 const style = {
   margin: 15

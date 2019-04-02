@@ -181,11 +181,13 @@ class App extends Component {
       <div className="App">
         <MuiThemeProvider>
           <AppBar title="Data Discovery Page">
-            <img
-              alt="github"
-              href="https://github.com/oliverpople/jSonarTest/"
-              src={require("./github-logo-1.png")}
-            />
+            <a href="https://github.com/oliverpople/jSonarTest/">
+              <img
+                alt="github"
+                src={require("./github-logo-1.png")}
+                className="logo"
+              />
+            </a>
           </AppBar>
         </MuiThemeProvider>
         <div className="search-box-container">

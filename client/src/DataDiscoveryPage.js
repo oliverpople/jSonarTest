@@ -6,7 +6,8 @@ import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import Order from "./Order.js";
 import { Card, List, ListItemText, ListItem } from "@material-ui/core";
-var apiBaseUrl = "http://localhost:4000/api/";
+var apiBaseUrl =
+  "https://jsonar-test.herokuapp.com/api/" || "http://localhost:4000/api/";
 
 const cardStyle = {
   boxShadow: "0 10px 18px rgba(0,0,0,0.25)"

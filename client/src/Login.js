@@ -60,7 +60,15 @@ class Login extends Component {
     return (
       <div>
         <MuiThemeProvider>
-          <AppBar title="Login" />
+          <AppBar title="Login">
+            <a href="https://github.com/oliverpople/jSonarTest/">
+              <img
+                alt="github"
+                src={require("./github-logo-1.png")}
+                className="logo"
+              />
+            </a>
+          </AppBar>
         </MuiThemeProvider>
         <MuiThemeProvider key="local-login-Component">
           <div>

@@ -20,7 +20,8 @@ class Register extends Component {
   }
 
   handleClick(event) {
-    var apiBaseUrl = "http://localhost:4000/api/";
+    var apiBaseUrl =
+      "https://jsonar-test.herokuapp.com/api/" || "http://localhost:4000/api/";
     var self = this;
     if (this.state.username.length > 0 && this.state.password.length > 0) {
       var payload = {

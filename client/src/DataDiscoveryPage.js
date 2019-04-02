@@ -180,12 +180,13 @@ class App extends Component {
     return (
       <div className="App">
         <MuiThemeProvider>
-          <AppBar title="Data Discovery Page" />
-          <img
-            alt="github"
-            href="https://github.com/oliverpople/jSonarTest/"
-            src={require("./github2.jpg")}
-          />
+          <AppBar title="Data Discovery Page">
+            <img
+              alt="github"
+              href="https://github.com/oliverpople/jSonarTest/"
+              src={require("./github-logo-1.png")}
+            />
+          </AppBar>
         </MuiThemeProvider>
         <div className="search-box-container">
           <MuiThemeProvider>

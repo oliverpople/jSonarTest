@@ -65,7 +65,15 @@ class Register extends Component {
       <div>
         <MuiThemeProvider>
           <div>
-            <AppBar title="Register" />
+            <AppBar title="Register">
+              <a href="https://github.com/oliverpople/jSonarTest/">
+                <img
+                  alt="github"
+                  src={require("./github-logo-1.png")}
+                  className="logo"
+                />
+              </a>
+            </AppBar>
             <TextField
               id="register-username-input"
               hintText="Enter your username"

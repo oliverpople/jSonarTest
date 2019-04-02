@@ -184,7 +184,7 @@ class App extends Component {
           <img
             alt="github"
             href="https://github.com/oliverpople/jSonarTest/"
-            src={require("./public/github2.jpg")}
+            src={require("../public/github2.jpg")}
           />
         </MuiThemeProvider>
         <div className="search-box-container">

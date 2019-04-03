@@ -76,6 +76,7 @@ GUI components from [Material-ui](https://material-ui.com/)
 ## To Do:
 
 - Improve responsiveness on mobile
-- Improve search functionality to match characters/substrings to strings.
+- Improve search functionality to match characters/substrings to strings
+- Implement hash map data structures where appropriate to improve code efficiency and elegance.
 - Write test checking order data renders in chronological order
 - Write test checking order details render (i.e. not just detail field names)

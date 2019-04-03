@@ -11,23 +11,22 @@ First checkout this repo, then install and run the dependencies with the followi
 ```
 $ git clone git@github.com:oliverpople/jSonarTest.git
 $ cd jSonarTest
-$ cd jSonarTest/backend
 $ npm i
-$ cd jSonarTest/frontend
+$ cd jSonarTest/client
 $ npm i
 ```
 
 To run Express server use the following commands in a new tab:
 
 ```
-$ cd jSonarTest/backend
-$ nodemon server.js
+$ cd jSonarTest
+$ npm start
 ```
 
 To run react client use the following commands in a separate tab:
 
 ```
-$ cd jSonarTest/frontend
+$ cd jSonarTest/client
 $ npm start
 ```
 
@@ -76,7 +75,7 @@ GUI components from [Material-ui](https://material-ui.com/)
 
 ## To Do:
 
-- Demonstrate Runnable/packaged binaries on Nginx. Deploy app and database using [Captain Duck Duck](https://captainduckduck.com)
 - Improve responsiveness on mobile
+- Improve search functionality to match characters/substrings to strings.
 - Write test checking order data renders in chronological order
 - Write test checking order details render (i.e. not just detail field names)

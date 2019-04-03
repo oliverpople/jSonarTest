@@ -1,6 +1,6 @@
 # jSonarTest
 
-A node.js web app for accessing and viewing customer data.
+A node.js web app for accessing and viewing sample customer data.
 
 # Dev Cheat Sheet
 
@@ -33,7 +33,7 @@ $ npm start
 To run cypress.js tests use the following commands in a separate tab:
 
 ```
-$ cd jSonarTest/frontend
+$ cd jSonarTest/client
 $ ./node_modules/.bin/cypress open
 ```
 

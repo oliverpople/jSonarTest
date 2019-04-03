@@ -2,4 +2,3 @@
 node_modules
 .env
 username.json
-cypress
